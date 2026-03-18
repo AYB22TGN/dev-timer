@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Settings as SettingsIcon, X } from "lucide-react";
+import { IconSettings as SettingsIcon, IconX as X } from "@/components/icons";
 import type { Settings as SettingsType } from "@/hooks/useTimer";
 
 interface SettingsProps {
@@ -224,7 +224,7 @@ export default function Settings({ settings, onUpdate }: SettingsProps) {
           (e.currentTarget as HTMLButtonElement).style.borderColor = "transparent";
         }}
       >
-        <SettingsIcon size={16} strokeWidth={2} />
+        <SettingsIcon style={{ width: 16, height: 16 }} />
       </button>
 
       {/* Backdrop */}
@@ -294,7 +294,7 @@ export default function Settings({ settings, onUpdate }: SettingsProps) {
                 color: "var(--text-secondary)",
               }}
             >
-              <X size={14} strokeWidth={2} />
+              <X style={{ width: 14, height: 14 }} />
             </button>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Play, Pause, RotateCcw } from "lucide-react";
+import { IconPlay, IconPause, IconReset } from "@/components/icons";
 
 interface ControlsProps {
   isRunning: boolean;
@@ -33,7 +33,7 @@ export default function Controls({ isRunning, onStart, onPause, onReset }: Contr
           (e.currentTarget as HTMLButtonElement).style.color = "var(--text-secondary)";
         }}
       >
-        <RotateCcw size={16} strokeWidth={2} />
+        <IconReset style={{ width: 16, height: 16 }} />
       </button>
 
       {/* Start / Pause — primary CTA */}
@@ -58,9 +58,9 @@ export default function Controls({ isRunning, onStart, onPause, onReset }: Contr
         }}
       >
         {isRunning ? (
-          <Pause size={22} strokeWidth={2.5} fill="currentColor" />
+          <IconPause style={{ width: 22, height: 22 }} />
         ) : (
-          <Play size={22} strokeWidth={2.5} fill="currentColor" style={{ transform: "translateX(1px)" }} />
+          <IconPlay style={{ width: 22, height: 22, transform: "translateX(1px)" }} />
         )}
       </button>
 

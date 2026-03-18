@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/* ─── Design tokens ──────────────────────────────────────────────── */
+:root {
+  --bg:          #0a0a0a;
+  --bg-elevated: #111111;
+  --bg-subtle:   #1a1a1a;
+  --border:      rgba(255,255,255,0.08);
+  --border-hover:rgba(255,255,255,0.16);
+
+  --text-primary:   #f0f0f0;
+  --text-secondary: #8a8a8a;
+  --text-muted:     #555555;
+
+  --accent:         #0D9488;   /* teal primary   */
+  --accent-bright:  #14B8A6;   /* teal secondary */
+  --accent-cta:     #F97316;   /* orange CTA     */
+
+  --ring-track:     rgba(255,255,255,0.06);
+  --ring-fill:      #0D9488;
+
+  --radius-lg:  20px;
+  --radius-md:  12px;
+  --radius-sm:  8px;
+
+  --transition-fast:   150ms ease-out;
+  --transition-normal: 200ms ease-out;
+  --transition-slow:   300ms ease-out;
+
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+/* ─── Tailwind theme bridge ──────────────────────────────────────── */
+@theme inline {
+  --color-background:   var(--bg);
+  --color-foreground:   var(--text-primary);
+  --color-accent:       var(--accent);
+  --color-accent-bright:var(--accent-bright);
+  --color-accent-cta:   var(--accent-cta);
+  --font-sans:          var(--font-inter);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Focus visible ring ─────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── SVG ring transition ────────────────────────────────────────── */
+.ring-progress {
+  transition: stroke-dashoffset 0.6s ease-out;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ring-progress {
+    transition: none;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Button base ────────────────────────────────────────────────── */
+.btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  font-family: var(--font-inter);
+  font-weight: 500;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+  user-select: none;
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+/* ─── Glass card ─────────────────────────────────────────────────── */
+.glass {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ─── Keyframe animations ────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } }
+  @keyframes fadeIn { from { opacity: 1; } to { opacity: 1; } }
+  @keyframes slideUp { from { transform: none; } to { transform: none; } }
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-subtle);
+  border-radius: 2px;
+}
